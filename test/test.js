@@ -221,14 +221,13 @@ describe('Testing the Crypto module:', function () {
 			});
 		});
 
-		// Broken until https://github.com/joyent/node/issues/5801 is merged
-		// it('Token generation handles errors', function (callback) {
-		// 	SGSHash.genereateToken(undefined, function (e, hashedToken) {
-		// 		assert.deepEqual(e instanceof Error, true);
-		// 		assert.deepEqual(hashedToken, undefined);
-		// 		callback();
-		// 	});
-		// });
+		it('Token generation handles errors', function (callback) {
+			SGSHash.genereateToken(undefined, function (e, hashedToken) {
+				assert.deepEqual(e instanceof Error, true);
+				assert.deepEqual(hashedToken, undefined);
+				callback();
+			});
+		});
 
 		it('Token hash is valid SHA256 hash', function (callback) {
 			async.waterfall([

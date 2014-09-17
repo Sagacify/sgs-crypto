@@ -56,13 +56,30 @@ module.exports = (function () {
 			size = 128;
 		}
 
-		crypto.randomBytes(size, function (e, buffer) {
-			if (e) {
-				return callback(e);
-			}
+		/**
+		 * This code is necessary due to:
+		 * https://github.com/Sagacify/sgs-crypto/issues/1
+		 */
+		if(size === 0) {
+			var e = new Error(
+				'https://github.com/Sagacify/sgs-crypto/issues/1'
+			);
+			return callback(e);
+		}
 
-			callback(e, buffer.toString('hex'));
-		});
+		/**
+		 * This code is necessary due to:
+		 * https://github.com/Sagacify/sgs-crypto/issues/2
+		 */
+		var buffer;
+		try {
+			buffer = crypto.randomBytes(size);
+		}
+		catch (e) {
+			return callback(e);
+		}
+
+		return callback(null, buffer.toString('hex'));
 	};
 
 	return Hash;
