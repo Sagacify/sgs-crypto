@@ -12,7 +12,9 @@
 		"bcrypt": "^0.8.0"
 	},
 	"devDependencies": {
+		"async": "^0.2.5",
 		"mocha": "^1.21.4",
+		"chi-square": "^0.0.1",
 		"grunt-cli": "^0.1.13",
 		"load-grunt-tasks": "^0.6.0",
 		"grunt-contrib-jshint": "^0.10.0",
