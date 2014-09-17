@@ -85,7 +85,7 @@ describe('Testing the Crypto module:', function () {
 			});
 		});
 
-		it('Password hash is not a hash of undefined, empty string or null', function (callback) {
+		it('Password hash is not a hash of falsy values', function (callback) {
 			var password = 'test';
 			SGSHash.hashPassword(password, function (e, hash) {
 				if (e) {
@@ -138,7 +138,7 @@ describe('Testing the Crypto module:', function () {
 			});
 		});
 
-		it('Produced BCrypt hashes have a cryptographically strong randomness', function (callback) {
+		it('Bcrypt has cryptograph. strong randomness', function (callback) {
 			this.timeout(10 * 1000);
 			var password = 'test';
 			var rounds = 100;
@@ -258,7 +258,7 @@ describe('Testing the Crypto module:', function () {
 			});
 		});
 
-		it('Token hash is not a hash of undefined, empty string or null', function (callback) {
+		it('Token hash is not a hash of falsy values', function (callback) {
 			async.waterfall([
 				function (cb) {
 					SGSHash.genereateToken(cb);
@@ -324,7 +324,7 @@ describe('Testing the Crypto module:', function () {
 			});
 		});
 
-		it('Produced SHA256 tokens have a cryptographically strong randomness', function (callback) {
+		it('SHA256 has cryptograph. strong randomness', function (callback) {
 			this.timeout(10 * 1000);
 			var rounds = 100;
 			async.times(rounds, function (i, cb) {

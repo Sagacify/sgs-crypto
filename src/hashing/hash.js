@@ -19,7 +19,7 @@ module.exports = (function () {
 			.update(token)
 			.digest('hex');
 		}
-		catch(e) {
+		catch (e) {
 			return callback(e);
 		}
 
@@ -38,7 +38,7 @@ module.exports = (function () {
 
 	Hash.prototype.compareToken = function (token, hash, callback) {
 		this.hashToken(token, function (e, hashedToken) {
-			if(e) {
+			if (e) {
 				return callback(e);
 			}
 
@@ -51,7 +51,7 @@ module.exports = (function () {
 	};
 
 	Hash.prototype.genereateToken = function (size, callback) {
-		if(callback === undefined) {
+		if (callback === undefined) {
 			callback = size;
 			size = 128;
 		}
@@ -60,7 +60,7 @@ module.exports = (function () {
 		 * This code is necessary due to:
 		 * https://github.com/Sagacify/sgs-crypto/issues/1
 		 */
-		if(size === 0) {
+		if (size === 0) {
 			var e = new Error(
 				'https://github.com/Sagacify/sgs-crypto/issues/1'
 			);

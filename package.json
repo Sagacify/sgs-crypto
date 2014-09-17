@@ -5,10 +5,9 @@
 	"description": "Sagacify's crypto module.",
 	"main": "src/sgs-crypto.js",
 	"scripts": {
-		"test": "grunt ci --verbose"
+		"test": "grunt ci"
 	},
 	"dependencies": {
-		"underscore": "^1.7.0",
 		"bcrypt": "^0.8.0"
 	},
 	"devDependencies": {
@@ -20,6 +19,7 @@
 		"grunt-contrib-jshint": "^0.10.0",
 		"grunt-contrib-clean": "^0.6.0",
 		"grunt-mocha-test": "^0.11.0",
+		"grunt-coveralls": "^1.0.0",
 		"grunt-istanbul": "^0.2.4",
 		"grunt-jsonlint": "^1.0.4",
 		"grunt-jscs": "^0.6.1"
