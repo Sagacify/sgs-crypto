@@ -12,10 +12,10 @@
 	<a title="Dependency status" href="https://david-dm.org/Sagacify/sgs-crypto#info=dependencies&view=table">
 		<img src="https://david-dm.org/Sagacify/sgs-crypto/status.png" alt="Dependency status" />
 	</a>
-	<a title="Dev. Dependency status" href="https://david-dm.org/Sagacify/sgs-crypto#info=devDependencies&view=table">
-		<img src="https://david-dm.org/Sagacify/sgs-crypto/dev-status.png" alt="Dev. Dependency status" />
+	<a title="Dev Dependency status" href="https://david-dm.org/Sagacify/sgs-crypto#info=devDependencies&view=table">
+		<img src="https://david-dm.org/Sagacify/sgs-crypto/dev-status.png" alt="Dev Dependency status" />
 	</a>
-	<a title="Peer. Dependency status" href="https://david-dm.org/Sagacify/sgs-crypto#info=peerDependencies&view=table">
-		<img src="https://david-dm.org/Sagacify/sgs-crypto/peer-status.png" alt="Peer. Dependency status" />
+	<a title="Peer Dependency status" href="https://david-dm.org/Sagacify/sgs-crypto#info=peerDependencies&view=table">
+		<img src="https://david-dm.org/Sagacify/sgs-crypto/peer-status.png" alt="Peer Dependency status" />
 	</a>
 </p>
