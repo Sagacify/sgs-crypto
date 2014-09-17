@@ -74,6 +74,9 @@ function GruntTasks (grunt) {
 			options: {
 				src: 'test/coverage/reports/lcov.info',
 				force: false
+			},
+			default: {
+				src: 'test/coverage/reports/lcov.info'
 			}
 		}
 	});
