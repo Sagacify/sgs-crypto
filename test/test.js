@@ -229,6 +229,14 @@ describe('Testing the Crypto module:', function () {
 			});
 		});
 
+		it('Token generation handles errors', function (callback) {
+			SGSHash.genereateToken(0, function (e, hashedToken) {
+				assert.deepEqual(e instanceof Error, true);
+				assert.deepEqual(hashedToken, undefined);
+				callback();
+			});
+		});
+
 		it('Token hash is valid SHA256 hash', function (callback) {
 			async.waterfall([
 				function (cb) {
