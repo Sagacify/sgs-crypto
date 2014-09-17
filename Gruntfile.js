@@ -94,7 +94,8 @@ function GruntTasks (grunt) {
 		'instrument',
 		'mochaTest',
 		'storeCoverage',
-		'makeReport'
+		'makeReport',
+		'coveralls'
 	]);
 
 	grunt.registerTask('ci', [
