@@ -7,7 +7,7 @@
 		<img src="https://secure.travis-ci.org/Sagacify/sgs-crypto.svg?branch=master" />
 	</a>
 	<a title="Coverage Status" href="https://coveralls.io/r/Sagacify/sgs-crypto">
-		<img src="https://img.shields.io/coveralls/Sagacify/sgs-crypto.svg" alt="Coverage Status" />
+		<img src="https://coveralls.io/repos/Sagacify/sgs-crypto/badge.png" alt="Coverage Status" />
 	</a>
 	<a title="Dependency status" href="https://david-dm.org/Sagacify/sgs-crypto#info=dependencies&view=table">
 		<img src="https://david-dm.org/Sagacify/sgs-crypto/status.png" alt="Dependency status" />
