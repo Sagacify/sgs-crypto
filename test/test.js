@@ -1,5 +1,5 @@
 var SGSCrypto = require('./coverage/instrument/src/sgs-crypto');
-var SGSHash = new (SGSCrypto.Hash)();
+var sgshash = new (SGSCrypto.Hash)();
 
 var chiSquare = require('chi-square');
 var assert = require('assert');
@@ -12,7 +12,7 @@ describe('Testing the Crypto module:', function () {
 
 		it('Password is hashed', function (callback) {
 			var password = 'test';
-			SGSHash.hashPassword(password, function (e, hash) {
+			sgshash.hashPassword(password, function (e, hash) {
 				if (e) {
 					return callback(e);
 				}
@@ -24,7 +24,7 @@ describe('Testing the Crypto module:', function () {
 		});
 
 		it('Password hashing handles errors', function (callback) {
-			SGSHash.hashPassword(undefined, function (e, hash) {
+			sgshash.hashPassword(undefined, function (e, hash) {
 				assert.deepEqual(e instanceof Error, true);
 				assert.deepEqual(hash, undefined);
 				callback();
@@ -33,7 +33,7 @@ describe('Testing the Crypto module:', function () {
 
 		it('Password hash is valid Bcrypt hash', function (callback) {
 			var password = 'test';
-			SGSHash.hashPassword(password, function (e, hash) {
+			sgshash.hashPassword(password, function (e, hash) {
 				if (e) {
 					return callback(e);
 				}
@@ -66,10 +66,10 @@ describe('Testing the Crypto module:', function () {
 			var password = 'test';
 			async.parallel({
 				hashA: function (cb) {
-					SGSHash.hashPassword(password, cb);
+					sgshash.hashPassword(password, cb);
 				},
 				hashB: function (cb) {
-					SGSHash.hashPassword(password, cb);
+					sgshash.hashPassword(password, cb);
 				}
 			}, function (e, results) {
 				if (e) {
@@ -87,20 +87,20 @@ describe('Testing the Crypto module:', function () {
 
 		it('Password hash is not a hash of falsy values', function (callback) {
 			var password = 'test';
-			SGSHash.hashPassword(password, function (e, hash) {
+			sgshash.hashPassword(password, function (e, hash) {
 				if (e) {
 					return callback(e);
 				}
 
 				async.parallel({
 					compareUndefined: function (cb) {
-						SGSHash.comparePassword('undefined', hash, cb);
+						sgshash.comparePassword('undefined', hash, cb);
 					},
 					compareNull: function (cb) {
-						SGSHash.comparePassword('null', hash, cb);
+						sgshash.comparePassword('null', hash, cb);
 					},
 					compareEmptyString: function (cb) {
-						SGSHash.comparePassword('', hash, cb);
+						sgshash.comparePassword('', hash, cb);
 					}
 				}, function (e, results) {
 					if (e) {
@@ -123,10 +123,10 @@ describe('Testing the Crypto module:', function () {
 			var password = 'test';
 			async.waterfall([
 				function (cb) {
-					SGSHash.hashPassword(password, cb);
+					sgshash.hashPassword(password, cb);
 				},
 				function (hash, cb) {
-					SGSHash.comparePassword(password, hash, cb);
+					sgshash.comparePassword(password, hash, cb);
 				}
 			], function (e, matches) {
 				if (e) {
@@ -143,7 +143,7 @@ describe('Testing the Crypto module:', function () {
 			var password = 'test';
 			var rounds = 100;
 			async.times(rounds, function (i, cb) {
-				SGSHash.hashPassword(password, function (e, hash) {
+				sgshash.hashPassword(password, function (e, hash) {
 					if (e) {
 						return cb(e);
 					}
@@ -175,11 +175,11 @@ describe('Testing the Crypto module:', function () {
 			var token;
 			async.waterfall([
 				function (cb) {
-					SGSHash.genereateToken(cb);
+					sgshash.genereateToken(cb);
 				},
 				function (resToken, cb) {
 					token = resToken;
-					SGSHash.hashToken(resToken, cb);
+					sgshash.hashToken(resToken, cb);
 				}
 			], function (e, hashedToken) {
 				if (e) {
@@ -193,7 +193,7 @@ describe('Testing the Crypto module:', function () {
 		});
 
 		it('Token hashing handles errors', function (callback) {
-			SGSHash.hashToken(undefined, function (e, hashedToken) {
+			sgshash.hashToken(undefined, function (e, hashedToken) {
 				assert.deepEqual(e instanceof Error, true);
 				assert.deepEqual(hashedToken, undefined);
 				callback();
@@ -203,17 +203,17 @@ describe('Testing the Crypto module:', function () {
 		it('Token comparison handles errors', function (callback) {
 			async.waterfall([
 				function (cb) {
-					SGSHash.genereateToken(cb);
+					sgshash.genereateToken(cb);
 				},
 				function (resToken, cb) {
-					SGSHash.hashToken(resToken, cb);
+					sgshash.hashToken(resToken, cb);
 				},
 			], function (e, hashedToken) {
 				if (e) {
 					return callback(e);
 				}
 
-				SGSHash.compareToken(undefined, hashedToken, function (e, matches) {
+				sgshash.compareToken(undefined, hashedToken, function (e, matches) {
 					assert.deepEqual(e instanceof Error, true);
 					assert.deepEqual(matches, undefined);
 					callback();
@@ -222,7 +222,7 @@ describe('Testing the Crypto module:', function () {
 		});
 
 		it('Token generation handles errors', function (callback) {
-			SGSHash.genereateToken(undefined, function (e, hashedToken) {
+			sgshash.genereateToken(undefined, function (e, hashedToken) {
 				assert.deepEqual(e instanceof Error, true);
 				assert.deepEqual(hashedToken, undefined);
 				callback();
@@ -230,7 +230,7 @@ describe('Testing the Crypto module:', function () {
 		});
 
 		it('Token generation handles errors', function (callback) {
-			SGSHash.genereateToken(0, function (e, hashedToken) {
+			sgshash.genereateToken(0, function (e, hashedToken) {
 				assert.deepEqual(e instanceof Error, true);
 				assert.deepEqual(hashedToken, undefined);
 				callback();
@@ -240,10 +240,10 @@ describe('Testing the Crypto module:', function () {
 		it('Token hash is valid SHA256 hash', function (callback) {
 			async.waterfall([
 				function (cb) {
-					SGSHash.genereateToken(cb);
+					sgshash.genereateToken(cb);
 				},
 				function (token, cb) {
-					SGSHash.hashToken(token, cb);
+					sgshash.hashToken(token, cb);
 				}
 			], function (e, hashedToken) {
 				if (e) {
@@ -261,10 +261,10 @@ describe('Testing the Crypto module:', function () {
 		it('Token hash is not a hash of falsy values', function (callback) {
 			async.waterfall([
 				function (cb) {
-					SGSHash.genereateToken(cb);
+					sgshash.genereateToken(cb);
 				},
 				function (token, cb) {
-					SGSHash.hashToken(token, cb);
+					sgshash.hashToken(token, cb);
 				}
 			], function (e, hashedToken) {
 				if (e) {
@@ -273,13 +273,13 @@ describe('Testing the Crypto module:', function () {
 
 				async.parallel({
 					compareUndefined: function (cb) {
-						SGSHash.compareToken('undefined', hashedToken, cb);
+						sgshash.compareToken('undefined', hashedToken, cb);
 					},
 					compareNull: function (cb) {
-						SGSHash.compareToken('null', hashedToken, cb);
+						sgshash.compareToken('null', hashedToken, cb);
 					},
 					compareEmptyString: function(cb) {
-						SGSHash.compareToken('', hashedToken, cb);
+						sgshash.compareToken('', hashedToken, cb);
 					}
 				}, function (e, results) {
 					if (e) {
@@ -302,18 +302,18 @@ describe('Testing the Crypto module:', function () {
 			var token;
 			async.waterfall([
 				function (cb) {
-					SGSHash.genereateToken(cb);
+					sgshash.genereateToken(cb);
 				},
 				function (resToken, cb) {
 					token = resToken;
-					SGSHash.hashToken(resToken, cb);
+					sgshash.hashToken(resToken, cb);
 				},
 			], function (e, hashedToken) {
 				if (e) {
 					return callback(e);
 				}
 
-				SGSHash.compareToken(token, hashedToken, function (e, matches) {
+				sgshash.compareToken(token, hashedToken, function (e, matches) {
 					if (e) {
 						return callback(e);
 					}
@@ -328,7 +328,7 @@ describe('Testing the Crypto module:', function () {
 			this.timeout(10 * 1000);
 			var rounds = 100;
 			async.times(rounds, function (i, cb) {
-				SGSHash.genereateToken(function (e, token) {
+				sgshash.genereateToken(function (e, token) {
 					if (e) {
 						return cb(e);
 					}

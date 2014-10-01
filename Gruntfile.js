@@ -30,7 +30,10 @@ function GruntTasks (grunt) {
 				'test/**/*.js',
 				'!test/coverage/**',
 				'Gruntfile.js'
-			]
+			],
+			options: {
+				config: '.jscsrc'
+			}
 		},
 		clean: {
 			coverage: [

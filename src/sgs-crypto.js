@@ -4,7 +4,7 @@ module.exports = (function () {
 	'use strict';
 
 	var SGSAuthentication = {
-		Hash: Hash
+		Hash: new Hash({})
 	};
 
 	return SGSAuthentication;
