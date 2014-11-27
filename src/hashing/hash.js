@@ -1,5 +1,6 @@
 var bcrypt = require('bcrypt');
 var crypto = require('crypto');
+var scmp = require('scmp');
 
 module.exports = (function () {
 	'use strict';
@@ -15,9 +16,9 @@ module.exports = (function () {
 
 		try {
 			hashedToken = crypto
-			.createHash('sha256')
-			.update(token)
-			.digest('hex');
+				.createHash('sha256')
+				.update(token)
+				.digest('hex');
 		}
 		catch (e) {
 			return callback(e);
@@ -42,7 +43,7 @@ module.exports = (function () {
 				return callback(e);
 			}
 
-			callback(null, hashedToken === hash);
+			callback(null, scmp(hashedToken, hash));
 		});
 	};
 
@@ -58,28 +59,35 @@ module.exports = (function () {
 
 		/**
 		 * This code is necessary due to:
-		 * https://github.com/Sagacify/sgs-crypto/issues/1
+		 * https://github.com/Sagacify/sgs-crypto/issues/2
 		 */
-		if (size === 0) {
-			var e = new Error(
-				'https://github.com/Sagacify/sgs-crypto/issues/1'
+		if (typeof size !== 'number') {
+			return callback(
+				new Error(
+					'https://github.com/Sagacify/sgs-crypto/issues/2'
+				)
 			);
-			return callback(e);
 		}
 
 		/**
 		 * This code is necessary due to:
-		 * https://github.com/Sagacify/sgs-crypto/issues/2
+		 * https://github.com/Sagacify/sgs-crypto/issues/1
 		 */
-		var buffer;
-		try {
-			buffer = crypto.randomBytes(size);
-		}
-		catch (e) {
-			return callback(e);
+		if (size === 0) {
+			return callback(
+				new Error(
+					'https://github.com/Sagacify/sgs-crypto/issues/1'
+				)
+			);
 		}
 
-		return callback(null, buffer.toString('hex'));
+		crypto.randomBytes(size, function (e, buffer) {
+			if (e) {
+				return callback(e);
+			}
+
+			callback(null, buffer.toString('hex'));
+		});
 	};
 
 	return Hash;

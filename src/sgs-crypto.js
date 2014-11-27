@@ -1,12 +1,14 @@
 var Hash = require('./hashing/hash');
+var Sign = require('./signing/sign');
 
 module.exports = (function () {
 	'use strict';
 
-	var SGSAuthentication = {
-		Hash: new Hash({})
+	var SGSCrypto = {
+		Hash: new Hash({}),
+		Sign: new Sign({})
 	};
 
-	return SGSAuthentication;
+	return SGSCrypto;
 
 })();
