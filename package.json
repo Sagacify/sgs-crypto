@@ -1,7 +1,7 @@
 {
 	"name": "sgs-crypto",
 	"private": true,
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "Sagacify's crypto module.",
 	"main": "src/sgs-crypto.js",
 	"scripts": {
