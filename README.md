@@ -2,6 +2,8 @@
 
 <p align="center">Sagacify's crypto module.</p>
 
+Sign module allows to serialize http requests for webhooks calls validation. The webhook server sends a hash of the information sent (indluding the http headers, query string, etc.) that needs to be hashed and compared.
+
 <p align="center">
 	<a title="Build Status" href="https://travis-ci.org/Sagacify/sgs-crypto">
 		<img src="https://secure.travis-ci.org/Sagacify/sgs-crypto.svg?branch=master" />
